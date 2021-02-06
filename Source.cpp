@@ -25,9 +25,10 @@ void Print_list()
 		i++;
 	}
 }
-void AddElement() 
+bool AddElement()
 {
 	string value;
+	bool check = false;
 	list <string> ::iterator startpos = list_of_char.begin();
 	list <string> ::iterator endpos = list_of_char.end();
 	cout << "Введите имя поля, после которого нужно добавить элемент:\t";
@@ -41,8 +42,10 @@ void AddElement()
 			cout << "Введите значение нового поля:\t";
 			cin >> tmp;
 			list_of_char.insert(++currentpos, tmp);
+			check = true;
 		}
 	}
+	return check;
 }
 int GetSize() 
 {
@@ -66,9 +69,16 @@ int main()
 	cout << "Список перед изменением:" << endl;
 	Print_list();
 	cout << "=============================" << endl;
-	AddElement();
-	cout << "=============================" << endl;
-	cout << "Список после изменения:" << endl;
-	Print_list();
-	cout << "=============================" << endl;
+	if (AddElement())
+	{
+		cout << "=============================" << endl;
+		cout << "Список после изменения:" << endl;
+		Print_list();
+		cout << "=============================" << endl;
+	}
+	else 
+	{
+		cout << "Такого элемента в списке нет!" << endl;
+		cout << "=============================" << endl;
+	}
 }
